@@ -1,0 +1,19 @@
+name: Java CI
+
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  publish:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish Maven Library
+      env:
+        USERNAME: d.kurata.38@gmail.com
+        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew publish
