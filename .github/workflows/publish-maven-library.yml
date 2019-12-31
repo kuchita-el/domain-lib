@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - name: Make Gradle Executable
+      run: chmod +x ./gradlew
     - name: Publish Maven Library
       env:
         USERNAME: d.kurata.38@gmail.com
