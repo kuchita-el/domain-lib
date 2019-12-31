@@ -1,0 +1,58 @@
+plugins {
+    id 'idea'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group 'com.github.dkurata38'
+version '0.0.4'
+
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    testCompileOnly {
+        extendsFrom testAnnotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    testImplementation "org.junit.platform:junit-platform-launcher:1.5.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.5.2"
+    testImplementation "org.junit.vintage:junit-vintage-engine:5.5.2"
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = uri 'https://maven.pkg.github.com/dkurata38/maven'
+            credentials {
+                username = project.findProperty('gpr.user') ?: System.getenv("USERNAME")
+                password = project.findProperty('gpr.token') ?: System.getenv("PASSWORD")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
