@@ -11,11 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Publish Maven Library
-      uses: docker://openjdk:11
       env: 
         USERNAME: d.kurata.38@gmail.com
         PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      run: ./gradlew build
+      uses: docker://openjdk:11
+      with: 
+        args: "./gradlew build"
 
 # jobs:
 #  publish:
