@@ -17,7 +17,10 @@ jobs:
       with:
         java-version: 11
     - name: Publish Maven Library
-      env:
-        USERNAME: d.kurata.38@gmail.com
-        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      run: ./gradlew publish
+      uses: docker://gradle:6.0-jdk11
+      with:
+        args: gradle publish -PUSERNAME=d.kurata.38@gmail.com -PPASSWORD=${{ secrets.GITHUB_TOKEN }}
+#      env:
+#        USERNAME: d.kurata.38@gmail.com
+#        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+#      run: ./gradlew publish
