@@ -5,22 +5,22 @@ on:
     branches: 
       - master
 
-jobs:
-  publish:
+# jobs:
+#  publish:
 
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@master
+#    steps:
+#    - uses: actions/checkout@master
 #    - name: Set up JDK 11
 #      uses: actions/setup-java@v1
 #      with:
 #        java-version: 11
-    - name: Publish Maven Library
-      uses: docker://gradle:6.0-jdk11
-      with:
-        args: gradle publish
-      env:
-        USERNAME: d.kurata.38@gmail.com
-        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Publish Maven Library
+#      uses: docker://gradle:6.0-jdk11
+#      with:
+#        args: gradle publish
+#      env:
+#        USERNAME: d.kurata.38@gmail.com
+#        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 #      run: ./gradlew publish
