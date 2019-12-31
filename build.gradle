@@ -30,11 +30,6 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
 test {
     useJUnitPlatform()
 }
